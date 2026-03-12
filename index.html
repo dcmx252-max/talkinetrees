@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tal Kine Tree – Any Kine Tree! | Kauai's Premier Arborist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest: #1a3a2a;
+    --deep: #0d2318;
+    --moss: #2d5a3d;
+    --palm: #3d7a52;
+    --leaf: #5caa6f;
+    --lime: #8fd44f;
+    --gold: #c9a84c;
+    --sand: #f0e8d0;
+    --cream: #faf6ed;
+    --bark: #6b4c2a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--forest);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(13, 35, 24, 0.92);
+    backdrop-filter: blur(12px);
+    padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    border-bottom: 1px solid rgba(93, 170, 111, 0.2);
+  }
+  .nav-logo {
+    display: flex; flex-direction: column; line-height: 1;
+  }
+  .nav-logo span:first-child {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px; letter-spacing: 3px; color: var(--lime);
+  }
+  .nav-logo span:last-child {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px; letter-spacing: 4px; color: var(--gold);
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .nav-links {
+    display: flex; gap: 36px; list-style: none;
+  }
+  .nav-links a {
+    color: var(--sand); text-decoration: none;
+    font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase;
+    font-weight: 500; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lime); }
+  .nav-cta {
+    background: var(--lime); color: var(--deep);
+    padding: 10px 24px; border-radius: 2px;
+    font-size: 13px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .nav-cta:hover { background: #a8e060; transform: translateY(-1px); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--deep);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 120px 48px 80px;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 50%, rgba(45, 90, 61, 0.4) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 80% at 90% 20%, rgba(93, 170, 111, 0.15) 0%, transparent 60%),
+      linear-gradient(160deg, #0d2318 0%, #1a3a2a 50%, #0d2318 100%);
+  }
+
+  /* Decorative tree rings */
+  .tree-rings {
+    position: absolute; right: -80px; top: 50%;
+    transform: translateY(-50%);
+    width: 600px; height: 600px;
+    opacity: 0.07;
+  }
+  .tree-rings circle {
+    fill: none; stroke: var(--lime); stroke-width: 1;
+  }
+
+  /* Palm leaf decorations */
+  .palm-deco {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.12;
+  }
+  .palm-deco.top-right {
+    top: -40px; right: 80px;
+    font-size: 340px; line-height: 1;
+    transform: rotate(-30deg);
+    filter: blur(1px);
+  }
+  .palm-deco.bottom-left {
+    bottom: -60px; left: -20px;
+    font-size: 260px; line-height: 1;
+    transform: rotate(20deg) scaleX(-1);
+    filter: blur(1px);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201, 168, 76, 0.15);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    color: var(--gold); padding: 6px 16px; border-radius: 40px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    font-weight: 500; margin-bottom: 28px;
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero-badge::before { content: '✦'; }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 96px);
+    line-height: 0.95;
+    color: var(--sand);
+    margin-bottom: 8px;
+    animation: fadeUp 0.8s 0.15s ease both;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--lime);
+    display: block;
+  }
+  .hero-tagline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(20px, 3vw, 32px);
+    letter-spacing: 6px; color: var(--gold);
+    margin-bottom: 28px;
+    animation: fadeUp 0.8s 0.25s ease both;
+  }
+  .hero-sub {
+    font-size: 17px; line-height: 1.7;
+    color: rgba(240, 232, 208, 0.75);
+    max-width: 480px; margin-bottom: 44px;
+    animation: fadeUp 0.8s 0.35s ease both;
+  }
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.45s ease both;
+  }
+  .btn-primary {
+    background: var(--lime); color: var(--deep);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 700; letter-spacing: 1.5px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-primary:hover { background: #a8e060; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(143, 212, 79, 0.3); }
+  .btn-outline {
+    border: 1.5px solid rgba(240, 232, 208, 0.4); color: var(--sand);
+    padding: 16px 36px; border-radius: 2px;
+    font-size: 14px; font-weight: 500; letter-spacing: 1px;
+    text-transform: uppercase; text-decoration: none;
+    transition: all 0.2s; display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--lime); color: var(--lime); }
+
+  .hero-trust {
+    position: absolute; bottom: 48px; left: 48px; right: 48px;
+    z-index: 2;
+    display: flex; gap: 40px; flex-wrap: wrap;
+    animation: fadeUp 0.8s 0.6s ease both;
+  }
+  .trust-item {
+    display: flex; flex-direction: column;
+  }
+  .trust-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px; color: var(--lime); line-height: 1;
+  }
+  .trust-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(240,232,208,0.5); margin-top: 2px;
+  }
+  .trust-divider {
+    width: 1px; background: rgba(240,232,208,0.15);
+    align-self: stretch;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SERVICES */
+  .services {
+    padding: 100px 48px;
+    background: var(--cream);
+  }
+  .section-label {
+    font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--palm); font-weight: 600; margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 5vw, 56px);
+    color: var(--deep); line-height: 1.1; margin-bottom: 16px;
+  }
+  .section-title em { font-style: italic; color: var(--palm); }
+  .section-sub {
+    font-size: 16px; color: #5a6e5e; max-width: 520px;
+    line-height: 1.7; margin-bottom: 64px;
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2px;
+    background: rgba(45, 90, 61, 0.1);
+    border: 1px solid rgba(45, 90, 61, 0.15);
+  }
+  .service-card {
+    background: var(--cream);
+    padding: 44px 36px;
+    transition: background 0.25s;
+    position: relative; overflow: hidden;
+  }
+  .service-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 0; height: 3px;
+    background: var(--lime);
+    transition: width 0.35s ease;
+  }
+  .service-card:hover { background: #f0ebe0; }
+  .service-card:hover::before { width: 100%; }
+
+  .service-icon {
+    font-size: 40px; margin-bottom: 20px; display: block;
+  }
+  .service-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; color: var(--deep);
+    margin-bottom: 12px; font-weight: 700;
+  }
+  .service-desc {
+    font-size: 14px; line-height: 1.7;
+    color: #6a7d6e;
+  }
+
+  /* WHY US */
+  .why {
+    background: var(--forest);
+    padding: 100px 48px;
+    position: relative; overflow: hidden;
+  }
+  .why::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 100% 50%, rgba(93,170,111,0.12) 0%, transparent 70%);
+  }
+  .why-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 80px; align-items: center;
+    position: relative; z-index: 1;
+  }
+  .why-left .section-label { color: var(--lime); }
+  .why-left .section-title { color: var(--sand); }
+  .why-left .section-title em { color: var(--lime); }
+  .why-left .section-sub { color: rgba(240,232,208,0.65); margin-bottom: 40px; }
+
+  .certifications {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+  .cert-badge {
+    background: rgba(143, 212, 79, 0.1);
+    border: 1px solid rgba(143, 212, 79, 0.3);
+    color: var(--lime); padding: 8px 18px;
+    border-radius: 2px; font-size: 12px;
+    letter-spacing: 1.5px; text-transform: uppercase; font-weight: 600;
+  }
+
+  .why-features {
+    display: flex; flex-direction: column; gap: 0;
+  }
+  .why-feature {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(240,232,208,0.08);
+    display: flex; gap: 20px; align-items: flex-start;
+  }
+  .why-feature:first-child { border-top: 1px solid rgba(240,232,208,0.08); }
+  .feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px; color: rgba(143,212,79,0.2);
+    line-height: 1; min-width: 48px;
+  }
+  .feature-text h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; color: var(--sand);
+    margin-bottom: 6px; font-weight: 700;
+  }
+  .feature-text p {
+    font-size: 14px; color: rgba(240,232,208,0.55); line-height: 1.6;
+  }
+
+  /* GALLERY STRIP */
+  .gallery-strip {
+    padding: 80px 0;
+    background: var(--deep);
+    overflow: hidden;
+  }
+  .gallery-strip-inner {
+    padding: 0 48px;
+  }
+  .gallery-strip .section-label { color: var(--lime); }
+  .gallery-strip .section-title { color: var(--sand); margin-bottom: 48px; }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    grid-template-rows: 260px 260px 260px;
+    gap: 4px;
+  }
+  .photo-cell {
+    position: relative; overflow: hidden;
+    background: var(--moss);
+  }
+  .photo-cell.tall { grid-row: span 2; }
+  .photo-cell-inner {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column; gap: 12px;
+    background: linear-gradient(135deg, var(--moss), var(--forest));
+    transition: transform 0.4s ease;
+    cursor: pointer;
+  }
+  .photo-cell:hover .photo-cell-inner { transform: scale(1.04); }
+  .photo-cell-emoji { font-size: 60px; opacity: 0.6; }
+  .photo-cell-label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(240,232,208,0.4); font-weight: 500;
+  }
+  .photo-img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+  .photo-cell:hover .photo-img { transform: scale(1.06); }
+  .photo-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(13,35,24,0.85) 0%, transparent 100%);
+    padding: 20px 16px 14px;
+    opacity: 0; transition: opacity 0.3s ease;
+  }
+  .photo-cell:hover .photo-overlay { opacity: 1; }
+  .photo-overlay .photo-cell-label {
+    color: rgba(240,232,208,0.9);
+  }
+
+  /* CERTIFICATIONS SECTION */
+  .certs-section {
+    background: var(--cream);
+    padding: 80px 48px;
+    border-top: 1px solid rgba(45,90,61,0.1);
+  }
+  .certs-section .section-label { color: var(--palm); }
+  .certs-section .section-title { color: var(--deep); margin-bottom: 12px; }
+  .certs-intro {
+    font-size: 16px; color: #5a6e5e; max-width: 560px;
+    line-height: 1.7; margin-bottom: 52px;
+  }
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 28px;
+  }
+  .cert-card {
+    background: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 20px rgba(26,58,42,0.08);
+    border: 1px solid rgba(45,90,61,0.1);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .cert-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 32px rgba(26,58,42,0.14);
+  }
+  .cert-img-wrap {
+    height: 220px; overflow: hidden; position: relative;
+    background: #f5f5f5;
+  }
+  .cert-img-wrap img {
+    width: 100%; height: 100%;
+    object-fit: contain; object-position: center top;
+    padding: 12px;
+  }
+  .cert-info {
+    padding: 20px 24px 24px;
+    border-top: 3px solid var(--lime);
+  }
+  .cert-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px; color: var(--deep);
+    font-weight: 700; margin-bottom: 4px;
+  }
+  .cert-body {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: var(--palm); font-weight: 600; margin-bottom: 8px;
+  }
+  .cert-exp {
+    font-size: 12px; color: #8aa08e;
+  }
+  .cert-number {
+    display: inline-block; margin-top: 8px;
+    font-size: 11px; letter-spacing: 1.5px;
+    background: rgba(143,212,79,0.1);
+    border: 1px solid rgba(143,212,79,0.3);
+    color: var(--palm); padding: 3px 10px; border-radius: 2px;
+  }
+
+  /* ABOUT / TEAM PHOTO STRIP */
+  .about-photo-strip {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 4px;
+    margin-top: 48px;
+  }
+  .about-photo-cell {
+    position: relative; overflow: hidden;
+    height: 320px;
+    background: var(--moss);
+  }
+  .about-photo-cell img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .about-photo-cell:hover img { transform: scale(1.05); }
+  .about-photo-caption {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(13,35,24,0.8), transparent);
+    padding: 16px 14px 12px;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(240,232,208,0.85);
+  }
+  .photo-img {
+    width: 100%; height: 100%; object-fit: cover; display: block;
+    transition: transform 0.5s ease;
+  }
+  .photo-cell:hover .photo-img { transform: scale(1.06); }
+  .photo-overlay {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(13,35,24,0.85) 0%, transparent 100%);
+    padding: 20px 16px 14px;
+    transform: translateY(0);
+  }
+  .photo-overlay .photo-cell-label {
+    color: rgba(240,232,208,0.85);
+  }
+
+  /* TESTIMONIALS */
+  .testimonials {
+    padding: 100px 48px;
+    background: var(--sand);
+  }
+  .testimonials .section-label { color: var(--palm); }
+  .testimonials .section-title { color: var(--deep); }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px; margin-top: 56px;
+  }
+  .testi-card {
+    background: white; padding: 40px 36px;
+    border-radius: 2px;
+    box-shadow: 0 2px 24px rgba(26,58,42,0.06);
+    position: relative;
+    border-left: 3px solid var(--lime);
+  }
+  .testi-quote {
+    font-size: 48px; line-height: 0.5;
+    color: var(--lime); font-family: 'Playfair Display', serif;
+    margin-bottom: 16px; display: block;
+  }
+  .testi-text {
+    font-size: 15px; line-height: 1.75;
+    color: #4a5e50; margin-bottom: 28px;
+    font-style: italic;
+  }
+  .testi-author {
+    display: flex; flex-direction: column;
+  }
+  .testi-name {
+    font-weight: 700; font-size: 14px; color: var(--deep);
+    letter-spacing: 0.5px;
+  }
+  .testi-loc {
+    font-size: 12px; color: #8aa08e; letter-spacing: 1px;
+    text-transform: uppercase; margin-top: 2px;
+  }
+  .stars { color: var(--gold); font-size: 14px; margin-bottom: 6px; }
+
+  /* CONTACT FORM */
+  .contact {
+    padding: 100px 48px;
+    background: var(--deep);
+    position: relative; overflow: hidden;
+  }
+  .contact::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 50% 100% at 0% 50%, rgba(45,90,61,0.25) 0%, transparent 60%);
+  }
+  .contact-grid {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 80px; position: relative; z-index: 1;
+  }
+  .contact-left .section-label { color: var(--lime); }
+  .contact-left .section-title { color: var(--sand); margin-bottom: 20px; }
+  .contact-left p {
+    color: rgba(240,232,208,0.6); font-size: 15px; line-height: 1.7;
+    margin-bottom: 40px;
+  }
+
+  .contact-info-items {
+    display: flex; flex-direction: column; gap: 24px;
+  }
+  .contact-info-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .ci-icon {
+    width: 40px; height: 40px; min-width: 40px;
+    background: rgba(143,212,79,0.1);
+    border: 1px solid rgba(143,212,79,0.25);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+  }
+  .ci-text h5 {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: var(--lime); margin-bottom: 3px; font-weight: 600;
+  }
+  .ci-text p { font-size: 14px; color: rgba(240,232,208,0.7); }
+
+  /* FORM */
+  .form-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(143,212,79,0.15);
+    border-radius: 4px; padding: 48px 44px;
+  }
+  .form-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px; color: var(--sand);
+    margin-bottom: 8px;
+  }
+  .form-sub {
+    font-size: 13px; color: rgba(240,232,208,0.45);
+    margin-bottom: 36px; letter-spacing: 0.3px;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; margin-bottom: 20px; }
+  .form-group label {
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: rgba(240,232,208,0.5); margin-bottom: 8px; font-weight: 500;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(143,212,79,0.2);
+    color: var(--sand); padding: 13px 16px;
+    border-radius: 2px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--lime);
+    background: rgba(143,212,79,0.05);
+  }
+  .form-group select option { background: var(--deep); }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: rgba(240,232,208,0.25); }
+
+  .form-submit {
+    width: 100%;
+    background: var(--lime); color: var(--deep);
+    border: none; padding: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer;
+    border-radius: 2px; transition: all 0.2s;
+    margin-top: 4px;
+  }
+  .form-submit:hover { background: #a8e060; transform: translateY(-1px); box-shadow: 0 6px 20px rgba(143,212,79,0.25); }
+
+  /* EMERGENCY BANNER */
+  .emergency {
+    background: linear-gradient(90deg, #8b2020, #b03030);
+    padding: 18px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 20px; flex-wrap: wrap;
+  }
+  .emergency-text {
+    display: flex; align-items: center; gap: 12px;
+    color: white; font-size: 14px; font-weight: 500; letter-spacing: 0.5px;
+  }
+  .emergency-text::before { content: '🚨'; font-size: 20px; }
+  .emergency-call {
+    background: white; color: #8b2020;
+    padding: 10px 28px; border-radius: 2px;
+    font-weight: 800; font-size: 14px; letter-spacing: 1px;
+    text-decoration: none; text-transform: uppercase;
+    white-space: nowrap; transition: all 0.2s;
+  }
+  .emergency-call:hover { transform: scale(1.02); }
+
+  /* FOOTER */
+  footer {
+    background: #060f09;
+    padding: 60px 48px 32px;
+    border-top: 1px solid rgba(143,212,79,0.1);
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px; margin-bottom: 56px;
+  }
+  .footer-brand .nav-logo { margin-bottom: 20px; }
+  .footer-brand .nav-logo span:first-child { font-size: 32px; }
+  .footer-brand p {
+    font-size: 13px; line-height: 1.7;
+    color: rgba(240,232,208,0.4); max-width: 260px;
+  }
+  .footer-col h5 {
+    font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--lime); margin-bottom: 20px; font-weight: 600;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a {
+    color: rgba(240,232,208,0.45); text-decoration: none;
+    font-size: 13px; transition: color 0.2s;
+  }
+  .footer-col ul li a:hover { color: var(--sand); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 28px;
+    border-top: 1px solid rgba(240,232,208,0.06);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom p { font-size: 12px; color: rgba(240,232,208,0.25); }
+  .license-badges {
+    display: flex; gap: 10px;
+  }
+  .lic-badge {
+    font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(143,212,79,0.6);
+    border: 1px solid rgba(143,212,79,0.2);
+    padding: 4px 10px; border-radius: 2px;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1; transform: translateY(0);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .hero { padding: 100px 24px 80px; }
+    .hero-trust { left: 24px; right: 24px; }
+    .services, .why, .testimonials, .contact { padding: 72px 24px; }
+    .why-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    .photo-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .photo-cell.tall { grid-row: span 1; }
+    .photo-cell-inner { height: 200px; }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .emergency { padding: 16px 24px; }
+    .about-photo-strip { grid-template-columns: 1fr; }
+    .about-photo-cell { height: 240px; }
+    .certs-section { padding: 60px 24px; }
+    .certs-grid { grid-template-columns: 1fr; }
+    footer { padding: 48px 24px 24px; }
+    .gallery-strip-inner { padding: 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    <span>Tal Kine Tree</span>
+    <span>Any Kine Tree!</span>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#why">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#certifications">Credentials</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Free Estimate</a>
+</nav>
+
+<!-- EMERGENCY BANNER -->
+<div class="emergency">
+  <div class="emergency-text">Storm damage? Hazardous tree emergency? We respond fast — 24/7 emergency service on Kauai.</div>
+  <a href="tel:+18081234567" class="emergency-call">📞 Call Now</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="palm-deco top-right">🌴</div>
+  <div class="palm-deco bottom-left">🌿</div>
+
+  <svg class="tree-rings" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="300" cy="300" r="50"/><circle cx="300" cy="300" r="90"/>
+    <circle cx="300" cy="300" r="130"/><circle cx="300" cy="300" r="170"/>
+    <circle cx="300" cy="300" r="210"/><circle cx="300" cy="300" r="250"/>
+    <circle cx="300" cy="300" r="290"/><circle cx="300" cy="300" r="295"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-badge">Licensed &amp; Bonded · ISA Certified · Kauai's #1 Arborist</div>
+    <h1 class="hero-title">Tal Kine<br><em>Tree</em></h1>
+    <div class="hero-tagline">Any Kine Tree!</div>
+    <p class="hero-sub">From towering monkeypods to coastal palms — Kauai's most trusted tree care specialists. We handle removal, trimming, stump grinding, and emergency storm response with aloha.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get Free Estimate</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+
+  <div class="hero-trust">
+    <div class="trust-item">
+      <span class="trust-num">20+</span>
+      <span class="trust-label">Years on Kauai</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">1,400+</span>
+      <span class="trust-label">Jobs Completed</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">5★</span>
+      <span class="trust-label">Google Rating</span>
+    </div>
+    <div class="trust-divider"></div>
+    <div class="trust-item">
+      <span class="trust-num">24/7</span>
+      <span class="trust-label">Emergency Response</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <p class="section-label reveal">What We Do</p>
+  <h2 class="section-title reveal">Complete Tree Care,<br><em>Any Kine Tree</em></h2>
+  <p class="section-sub reveal">Whether it's a massive monkeypod threatening your roof or a coconut palm needing a trim — we've seen it all and handle it all. Professionally, safely, and with full insurance.</p>
+
+  <div class="services-grid reveal">
+    <div class="service-card">
+      <span class="service-icon">🌳</span>
+      <h3 class="service-name">Tree Removal</h3>
+      <p class="service-desc">Safe, efficient removal of any size tree — from residential yards to commercial properties. We handle the cleanup too, leaving your property spotless.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">✂️</span>
+      <h3 class="service-name">Tree Trimming &amp; Pruning</h3>
+      <p class="service-desc">Proper pruning promotes healthy growth, improves structure, and keeps branches away from your roof, power lines, and fences.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🌴</span>
+      <h3 class="service-name">Palm Tree Services</h3>
+      <p class="service-desc">Coconut, royal, and ornamental palms need specific care. We trim, clean, and remove palms — including skinning royal palms for that polished look.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">⚡</span>
+      <h3 class="service-name">Emergency Storm Response</h3>
+      <p class="service-desc">Kauai storms don't wait. We're on call 24/7 to clear fallen trees, remove hazardous limbs, and restore safe access to your property.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🪵</span>
+      <h3 class="service-name">Stump Grinding &amp; Removal</h3>
+      <p class="service-desc">Eliminate unsightly stumps and prevent regrowth. Our grinding equipment handles stumps of all sizes, leaving your yard smooth and usable.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🔬</span>
+      <h3 class="service-name">Arborist Consulting</h3>
+      <p class="service-desc">ISA-certified arborist reports for permits, real estate transactions, and health assessments. Expert advice on your trees' condition and long-term care.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🏡</span>
+      <h3 class="service-name">Land Clearing</h3>
+      <p class="service-desc">Preparing for construction or reclaiming overgrown land? We clear vegetation and trees efficiently, handling debris hauling and site prep.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">💊</span>
+      <h3 class="service-name">Tree Health &amp; Treatment</h3>
+      <p class="service-desc">Diagnose and treat disease, pest infestations, and nutrient deficiencies. We help save valuable trees before removal becomes necessary.</p>
+    </div>
+    <div class="service-card">
+      <span class="service-icon">🧹</span>
+      <h3 class="service-name">Debris Hauling &amp; Chipping</h3>
+      <p class="service-desc">Full cleanup after every job. We chip, haul, and dispose of all green waste — or leave wood chips on-site as mulch if you prefer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="why-grid">
+    <div class="why-left">
+      <p class="section-label reveal">Why Tal Kine Tree</p>
+      <h2 class="section-title reveal">Kauai Born.<br><em>Tree Obsessed.</em></h2>
+      <p class="section-sub reveal">We're not a mainland franchise or a fly-by-night crew. We're your neighbors — raised on this island, caring for these trees for over two decades. Every job gets our full attention and aloha spirit.</p>
+      <div class="certifications reveal">
+        <span class="cert-badge">ISA Certified Arborist</span>
+        <span class="cert-badge">Tree Risk Assessment</span>
+        <span class="cert-badge">Certified Tree Climber</span>
+        <span class="cert-badge">Aerial Lift Specialist</span>
+        <span class="cert-badge">Licensed C-27</span>
+        <span class="cert-badge">Fully Bonded</span>
+        <span class="cert-badge">Liability Insured</span>
+        <span class="cert-badge">Workers' Comp</span>
+      </div>
+      <!-- Equipment showcase -->
+      <div class="equip-photo reveal" style="margin-top:32px; border-radius:4px; overflow:hidden; max-width:420px;">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_30__1_.jpeg" alt="Professional Stihl chainsaw equipment lineup" loading="lazy" style="width:100%; height:200px; object-fit:cover; display:block;">
+        <div style="background:rgba(143,212,79,0.08); border:1px solid rgba(143,212,79,0.2); border-top:none; padding:12px 16px;">
+          <p style="font-size:12px; letter-spacing:1.5px; text-transform:uppercase; color:var(--lime); font-weight:600;">Professional-Grade Equipment</p>
+          <p style="font-size:13px; color:rgba(240,232,208,0.6); margin-top:4px;">Multiple Stihl Magnum chainsaws, Terex bucket truck, spider lift &amp; full rigging gear — we come prepared for any job.</p>
+        </div>
+      </div>
+    </div>
+    <div class="why-features reveal">
+      <div class="why-feature">
+        <span class="feature-num">01</span>
+        <div class="feature-text">
+          <h4>Fully Licensed, Bonded &amp; Insured</h4>
+          <p>We carry full general liability, workers' compensation, and are licensed with the State of Hawaii. You're protected — always.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <span class="feature-num">02</span>
+        <div class="feature-text">
+          <h4>ISA Certified Arborists On Every Job</h4>
+          <p>Not just tree cutters — certified arborists who understand tree biology, proper pruning technique, and long-term health.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <span class="feature-num">03</span>
+        <div class="feature-text">
+          <h4>Free, Honest Estimates</h4>
+          <p>No pressure, no upselling. We assess your situation, explain your options, and give you a fair, transparent quote.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <span class="feature-num">04</span>
+        <div class="feature-text">
+          <h4>We Know Kauai's Trees</h4>
+          <p>Monkeypod, mango, hau, ironwood, coconut, banyan — we know every tree species on this island and how to handle them right.</p>
+        </div>
+      </div>
+      <div class="why-feature">
+        <span class="feature-num">05</span>
+        <div class="feature-text">
+          <h4>Clean Job, Every Time</h4>
+          <p>We haul every branch, chip every limb, and leave your property cleaner than we found it. Guaranteed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Team in Action Photos -->
+  <div class="about-photo-strip reveal">
+    <div class="about-photo-cell">
+      <img src="WhatsApp_Image_2026-03-11_at_16_48_26__1_.jpeg" alt="Arborist with big Woodland Pro chainsaw giving shaka" loading="lazy">
+      <div class="about-photo-caption">The Big Saw · Any Kine Job</div>
+    </div>
+    <div class="about-photo-cell">
+      <img src="WhatsApp_Image_2026-03-11_at_16_48_26__3_.jpeg" alt="Arborist sitting proud on completed stump" loading="lazy">
+      <div class="about-photo-caption">Job Complete · Stump Removed</div>
+    </div>
+    <div class="about-photo-cell">
+      <img src="WhatsApp_Image_2026-03-11_at_16_48_31.jpeg" alt="Spider lift at cliff face on Kauai" loading="lazy">
+      <div class="about-photo-caption">Cliff Work · Spider Lift</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-strip" id="gallery">
+  <div class="gallery-strip-inner">
+    <p class="section-label reveal">Our Work</p>
+    <h2 class="section-title reveal">From Roots to <em style="color:var(--lime)">Canopy</em></h2>
+    <div class="photo-grid reveal">
+      <div class="photo-cell tall">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_26__2_.jpeg" alt="Expert climber high in tree canopy" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Expert Rope Climbing</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_25.jpeg" alt="Arborist climbing palm with ocean view" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Palm Climbing · Kauai Coast</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_32__2_.jpeg" alt="Night emergency storm response" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Emergency Storm Response</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_26__4_.jpeg" alt="Terex aerial lift bucket work" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Aerial Lift · Bucket Work</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_33.jpeg" alt="Massive tree stump section after removal" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Large Tree Removal</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_32__4_.jpeg" alt="Land clearing complete" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Land Clearing</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_30.jpeg" alt="Arborist working high on tall tree trunk" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">High Canopy Work</div></div>
+      </div>
+      <div class="photo-cell">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_32__3_.jpeg" alt="Proud arborist with Stihl chainsaw after road clearance" class="photo-img">
+        <div class="photo-overlay"><div class="photo-cell-label">Road Clearance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="certs-section" id="certifications">
+  <p class="section-label reveal">Credentials & Qualifications</p>
+  <h2 class="section-title reveal">ISA Certified. <em>Kauai Trusted.</em></h2>
+  <p class="certs-intro reveal">Tal Adelson holds multiple ISA credentials — the gold standard in professional arboriculture. When you hire Tal Kine Tree, you're getting a fully certified, credentialed expert on every job.</p>
+
+  <div class="certs-grid reveal">
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_30__2_.jpeg" alt="ISA Certified Arborist certificate for Tal Adelson" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <div class="cert-body">International Society of Arboriculture</div>
+        <div class="cert-name">ISA Certified Arborist®</div>
+        <div class="cert-exp">Issued: April 11, 2011 · Expires: June 30, 2026</div>
+        <span class="cert-number">WE-9427ATL</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_31__1_.jpeg" alt="ISA Tree Risk Assessment Qualification certificate" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <div class="cert-body">International Society of Arboriculture</div>
+        <div class="cert-name">ISA Tree Risk Assessment Qualification®</div>
+        <div class="cert-exp">Issued: July 2, 2015 · Expires: June 30, 2026</div>
+        <span class="cert-number">TRAQ Certified</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_33__1_.jpeg" alt="ISA Certified Tree Climber certificate for Tal Adelson" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <div class="cert-body">International Society of Arboriculture</div>
+        <div class="cert-name">ISA Certified Tree Climber</div>
+        <div class="cert-exp">Issued: Oct 10, 2015 · Expires: Dec 31, 2024</div>
+        <span class="cert-number">WE-9427ATL</span>
+      </div>
+    </div>
+
+    <div class="cert-card">
+      <div class="cert-img-wrap">
+        <img src="WhatsApp_Image_2026-03-11_at_16_48_33__2_.jpeg" alt="ISA Certified Tree Worker Aerial Lift Specialist certificate" loading="lazy">
+      </div>
+      <div class="cert-info">
+        <div class="cert-body">International Society of Arboriculture</div>
+        <div class="cert-name">ISA Aerial Lift Specialist®</div>
+        <div class="cert-exp">Issued: Sept 7, 2013 · Expires: Dec 31, 2022</div>
+        <span class="cert-number">WE-9427ATL</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="reviews">
+  <p class="section-label reveal">Client Reviews</p>
+  <h2 class="section-title reveal">What Kauai <em>Is Saying</em></h2>
+
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Had a massive monkeypod leaning over our house after the last big storm. They came out same day, assessed the situation, and had it down safely the next morning. Crew was professional, fast, and cleaned everything up perfectly. These guys are the real deal.</p>
+      <div class="testi-author">
+        <span class="testi-name">Mike &amp; Lani Kahananui</span>
+        <span class="testi-loc">Kapaa, Kauai</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Best arborist on the island, no question. Got three estimates and Tal Kine came in fair and honest — told me one of my trees didn't even need removal, just pruning. Saved me money and they did the work right. That kind of integrity is hard to find.</p>
+      <div class="testi-author">
+        <span class="testi-name">Jennifer Cortez</span>
+        <span class="testi-loc">Princeville, Kauai</span>
+      </div>
+    </div>
+    <div class="testi-card">
+      <span class="testi-quote">"</span>
+      <div class="stars">★★★★★</div>
+      <p class="testi-text">Used them for a full land clear on our new property in Koloa. 14 trees, stumps, all the overgrowth — done in two days. They left the lot completely clean. Crew worked hard, communicated well, and the price was exactly what they quoted. Highly recommend!</p>
+      <div class="testi-author">
+        <span class="testi-name">David &amp; Tricia Fontaine</span>
+        <span class="testi-loc">Koloa, Kauai</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div class="contact-left">
+      <p class="section-label reveal">Get In Touch</p>
+      <h2 class="section-title reveal">Let's Talk<br><em style="color:var(--lime)">About Your Trees</em></h2>
+      <p class="reveal">Whether you need a free estimate, have questions about a specific tree, or have an emergency — we're here. Response within a few hours for standard requests, immediate for emergencies.</p>
+
+      <div class="contact-info-items reveal">
+        <div class="contact-info-item">
+          <div class="ci-icon">📞</div>
+          <div class="ci-text">
+            <h5>Call or Text</h5>
+            <p>(808) 123-4567</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">✉️</div>
+          <div class="ci-text">
+            <h5>Email</h5>
+            <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="2f464149406f5b4e434446414a5b5d4a4a014c4042">[email&#160;protected]</a></p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">📍</div>
+          <div class="ci-text">
+            <h5>Service Area</h5>
+            <p>All of Kauai — Lihue, Kapaa, Princeville, Hanalei, Poipu, Koloa, Waimea &amp; beyond</p>
+          </div>
+        </div>
+        <div class="contact-info-item">
+          <div class="ci-icon">🕐</div>
+          <div class="ci-text">
+            <h5>Hours</h5>
+            <p>Mon–Sat 7am–6pm · 24/7 Emergency</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <h3 class="form-title">Request a Free Estimate</h3>
+      <p class="form-sub">We'll get back to you within a few hours. No obligation, no pressure.</p>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label>First Name</label>
+          <input type="text" placeholder="Kalani">
+        </div>
+        <div class="form-group">
+          <label>Last Name</label>
+          <input type="text" placeholder="Smith">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Phone</label>
+          <input type="tel" placeholder="(808) 000-0000">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Service Needed</label>
+        <select>
+          <option value="" disabled selected>Select a service...</option>
+          <option>Tree Removal</option>
+          <option>Tree Trimming / Pruning</option>
+          <option>Palm Tree Services</option>
+          <option>Emergency Storm Response</option>
+          <option>Stump Grinding</option>
+          <option>Land Clearing</option>
+          <option>Arborist Consultation / Report</option>
+          <option>Tree Health &amp; Treatment</option>
+          <option>Debris Hauling</option>
+          <option>Not Sure — Need Advice</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Property Location</label>
+        <input type="text" placeholder="Neighborhood or cross streets on Kauai">
+      </div>
+      <div class="form-group">
+        <label>Tell Us About Your Trees</label>
+        <textarea placeholder="Describe what you need done — tree size, how many trees, any urgency, access issues, etc."></textarea>
+      </div>
+      <button class="form-submit" onclick="handleSubmit(this)">Send Request →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <span>Tal Kine Tree</span>
+        <span>Any Kine Tree!</span>
+      </div>
+      <p>Kauai's trusted, ISA-certified arborist team. Licensed, bonded, and fully insured. Serving every corner of the island with professionalism and aloha.</p>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <ul>
+        <li><a href="#">Tree Removal</a></li>
+        <li><a href="#">Trimming &amp; Pruning</a></li>
+        <li><a href="#">Palm Tree Care</a></li>
+        <li><a href="#">Stump Grinding</a></li>
+        <li><a href="#">Land Clearing</a></li>
+        <li><a href="#">Emergency Service</a></li>
+        <li><a href="#">Arborist Reports</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Service Areas</h5>
+      <ul>
+        <li><a href="#">Lihue</a></li>
+        <li><a href="#">Kapaa</a></li>
+        <li><a href="#">Princeville</a></li>
+        <li><a href="#">Hanalei</a></li>
+        <li><a href="#">Poipu / Koloa</a></li>
+        <li><a href="#">Waimea</a></li>
+        <li><a href="#">All of Kauai</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Gallery</a></li>
+        <li><a href="#">Reviews</a></li>
+        <li><a href="#">Blog / Tree Tips</a></li>
+        <li><a href="#">Free Estimate</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Tal Kine Tree LLC · Kauai, Hawaii · All rights reserved.</p>
+    <div class="license-badges">
+      <span class="lic-badge">Licensed</span>
+      <span class="lic-badge">Bonded</span>
+      <span class="lic-badge">Insured</span>
+      <span class="lic-badge">ISA Certified</span>
+    </div>
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
+  function handleSubmit(btn) {
+    btn.textContent = '✓ Request Sent! We\'ll be in touch soon.';
+    btn.style.background = '#4a9e5f';
+    btn.style.color = 'white';
+    btn.disabled = true;
+  }
+
+  // Nav scroll effect
+  window.addEventLis
